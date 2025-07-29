@@ -1,13 +1,14 @@
 import dotenv  from "dotenv";
 dotenv.config();
 import { gql } from "apollo-server-core";
-import Products from './Products.json' assert { type: "json" }
+const Products = JSON.parse(readFileSync(new URL('./Products.json', import.meta.url), 'utf-8'));
 import UserModel from "./Model/Users.js";
 import ContactModel from "./Model/Contact.js";
 import bcrypt from 'bcrypt'
 import nodemailer from 'nodemailer'
 import jwt from "jsonwebtoken";
 import ShippingModel from "./Model/Shipping.js";
+import { readFileSync } from 'fs';
 
 let transporter=nodemailer.createTransport({
      host: "smtp-relay.brevo.com",
